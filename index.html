@@ -27,7 +27,7 @@
         .container {
             max-width: 1200px;
             width: 100%;
-            max-height: 95vh;
+            max-height: 90vh;
             background: #630000;
             /* dark red / black */
             border-radius: 28px;
@@ -457,13 +457,15 @@
             let messages = [];
 
             for (let question of questions) {
-                if (question.length + current_message.length < character_limit) {
+                //if the question fits into the current message
+                if (question.length + current_message.length <= character_limit) {
 
                     current_message += question;
 
                 } else {
                     messages.push(current_message);
                     current_message = "";
+                    // if the question is not going to fit in just one message
                     if (question.length > character_limit) {
                         let j = 0;
                         while (j * character_limit < question.length) {
@@ -471,7 +473,9 @@
 
                             j++;
                         }
-                    }
+                    }else{ //this is for a small question that doesn't fit in the current message
+                        current_message += question
+                    }   
                 }
             }
             if (current_message !="" && current_message!="\n"){
