@@ -383,7 +383,7 @@
             <div class="btn-group">
                 <button class="btn" id="reformatBtn">⟳ Reformat</button>
                 <button class="btn btn-outline" id="clearBtn">✕ Clear</button>
-                <button class="btn btn-outline" id="copyBtn">📋 Copy</button>
+                <div id="copyButtonGroup"></div>
             </div>
             <div class="message-counter">
                 <strong id="messageCount">0</strong>
@@ -484,6 +484,7 @@
             reformatted_messages = structuredClone(messages)
             updateMessageCount()
             renderMessages()
+            addCopyButtons()
         }
 
         // ─── DOM refs ───
@@ -491,9 +492,10 @@
         const outputContainer = document.getElementById('outputContainer');
         const reformatBtn = document.getElementById('reformatBtn');
         const clearBtn = document.getElementById('clearBtn');
-        const copyBtn = document.getElementById('copyBtn');
         const messageCount = document.getElementById('messageCount');
-
+        const copyButtonGroup = document.getElementById("copyButtonGroup)
+                                                    
+        // I don't care if adding event listeners is bad
         function renderMessages(){
 
             if (reformatted_messages.length===0){
@@ -522,7 +524,29 @@
             }
 
         }
+        // I don't care if adding event listeners is bad
+        function addCopyButtons(){
 
+            if (reformatted_messages.length===0){
+                return
+            }
+            let i = 0
+            for (let message of reformatted_messages){
+                const button = document.createElement("button");
+                button.className = "btn-outline";
+                button.textContent = "Copy msg " + String(i) 
+
+                button.setAttribute('msgindex', i);
+                // click → focus the box
+                box.addEventListener('click', function(e) {
+                    navigator.clipboard.writeText(message)
+                });
+
+                copyButtonGroup.appendChild(button)
+                i+=1
+            }
+
+        }
 
         // ─── helpers ───
         function updateMessageCount() {
@@ -537,29 +561,12 @@
         function clearAll() {
             inputEl.value = '';
             outputContainer.replaceChildren()
+            copyButtonGroup.repalceChildren()
             runReformat()
 
             inputEl.focus();
         }
-        /*
-        function copyOutput() {
-            const val = outputEl.value;
-            if (!val) return;
-            navigator.clipboard.writeText(val).then(() => {
-                const original = copyBtn.textContent;
-                copyBtn.textContent = '✓ Copied!';
-                setTimeout(() => { copyBtn.textContent = original; }, 1500);
-            }).catch(() => {
-                // fallback
-                outputEl.select();
-                document.execCommand('copy');
-                const original = copyBtn.textContent;
-                copyBtn.textContent = '✓ Copied!';
-                setTimeout(() => { copyBtn.textContent = original; }, 1500);
-            });
-        }
-         */
-
+       
         // ─── events ───
         reformatBtn.addEventListener('click', runReformat);
 
