@@ -213,7 +213,7 @@
             background: #AA0000;
             border: none;
             border-radius: 40px;
-            padding: 12px 32px;
+            padding: 12px 20px;
             font-weight: 700;
             font-size: 1rem;
             color: #F6C313;
@@ -383,7 +383,7 @@
             <div class="btn-group">
                 <button class="btn" id="reformatBtn">⟳ Reformat</button>
                 <button class="btn btn-outline" id="clearBtn">✕ Clear</button>
-                <div id="copyButtonGroup"></div>
+                <div id="copyButtonGroup" gap="12px"></div>
             </div>
             <div class="message-counter">
                 <strong id="messageCount">0</strong>
@@ -401,7 +401,7 @@
         const exempted_questions = ["Email", "What is your preferred method of contact?", "Please give your Discord username and tag", "Please share links to all"]
         const last_name_question = "Last Name"
         const footer = "Submitted "
-
+        
         reformatted_messages = []
         function reformat(text) {
             
@@ -553,6 +553,7 @@
 
         function runReformat() {
             outputContainer.replaceChildren()
+            copyButtonGroup.replaceChildren()
             reformat(inputEl.value)
         }
 
