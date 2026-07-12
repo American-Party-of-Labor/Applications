@@ -533,11 +533,9 @@
             let i = 0
             for (let message of reformatted_messages){
                 const button = document.createElement("button");
-                button.className = "btn-outline";
-                button.textContent = "Copy msg " + String(i) 
-
-                button.setAttribute('msgindex', i);
-                // click → focus the box
+                button.className = "btn";
+                button.textContent = "Copy msg " + String(i+1) 
+                
                 button.addEventListener('click', function(e) {
                     navigator.clipboard.writeText(message)
                 });
@@ -561,7 +559,7 @@
         function clearAll() {
             inputEl.value = '';
             outputContainer.replaceChildren()
-            copyButtonGroup.repalceChildren()
+            copyButtonGroup.replaceChildren()
             runReformat()
 
             inputEl.focus();
@@ -571,9 +569,6 @@
         reformatBtn.addEventListener('click', runReformat);
 
         clearBtn.addEventListener('click', clearAll);
-
-        //copyBtn.addEventListener('click', copyOutput);
-
         // live update on input change (optional, but nice)
         inputEl.addEventListener('input', () => {
             // auto-update? we'll let the user click reformat, but we could also auto-run with debounce.
