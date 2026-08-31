@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta ="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Text Reformat Tool</title>
     <style>
         /* ── reset & base ── */
@@ -393,12 +393,12 @@
 
     <!-- ──────────────────────────────────────────────── -->
     <script>
-        // ─── exact port of the Python `reformat` function ───
+    
         const character_limit = 2000 - 5; // 1995
         const message_divider_string = "\n\n\n\n"
 
         // TODO if the questions get changed this needs to be updated
-        const exempted_questions = ["Email", "What is your preferred method of contact?", "Please give your Discord username and tag", "Please share links to all"]
+        const exempted_questions = ["Email", "What is your preferred method of contact?", "Please give your Discord user and tag", "Please share links to all"]
         const last_name_question = "Last Name"
         const footer = "Submitted "
         
@@ -434,7 +434,7 @@
 
                 // Reduce last name to first initial
                 if (splits[i].includes(last_name_question)){
-                    splits[i + 1] = splits[i + 1].substring(0,3) + "\n"
+                    splits[i + 1] = splits[i + 1].substring(0,2) + "\n"
                 }
 
                 // Remove the footer from the final split
@@ -533,7 +533,7 @@
             let i = 0
             for (let message of reformatted_messages){
                 const button = document.createElement("button");
-                button.className = "btn";
+                button.class = "btn";
                 button.textContent = "Copy msg " + String(i+1) 
                 
                 button.addEventListener('click', function(e) {
