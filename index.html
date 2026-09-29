@@ -398,7 +398,7 @@
         const message_divider_string = "\n\n\n\n"
 
         // TODO if the questions get changed this needs to be updated
-        const exempted_questions = ["Email", "What is your preferred method of contact?", "Please give your Discord user and tag", "Please share links to all"]
+        const exempted_questions = ["Email", "What is your preferred method of contact?", "Please give your Discord username and tag", "Please share links to all"]
         const last_name_question = "Last Name"
         const footer = "Submitted "
         
@@ -434,6 +434,9 @@
 
                 // Reduce last name to first initial
                 if (splits[i].includes(last_name_question)){
+                    console.log("i: " + splits[i])
+                    console.log("i+1: "+ splits[i+1])
+            
                     splits[i + 1] = splits[i + 1].substring(0,2) + "\n"
                 }
 
