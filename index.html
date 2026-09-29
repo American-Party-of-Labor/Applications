@@ -436,8 +436,10 @@
                 if (splits[i].includes(last_name_question)){
                     console.log("i: " + splits[i])
                     console.log("i+1: "+ splits[i+1])
-            
+                    console.log (splits[i + 1].substring(0,2) + "\n")
                     splits[i + 1] = splits[i + 1].substring(0,2) + "\n"
+                    
+                    console.log(splits[i + 1])
                 }
 
                 // Remove the footer from the final split
