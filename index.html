@@ -436,7 +436,7 @@
                 if (splits[i].includes(last_name_question)){
                     let last_name = splits[i+1].replaceAll(" ","")
                     last_name = last_name.replaceAll("\n","")
-                    last_name = last_name.substring(0,1)+"\n"
+                    last_name = "\n"+last_name.substring(0,1)+"\n"
                     splits[i + 1] = last_name
                 }
 
