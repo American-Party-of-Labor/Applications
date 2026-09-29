@@ -434,12 +434,10 @@
 
                 // Reduce last name to first initial
                 if (splits[i].includes(last_name_question)){
-                    console.log("i: " + splits[i])
-                    console.log("i+1: "+ splits[i+1])
-                    console.log (splits[i + 1].substring(0,2) + "\n")
-                    splits[i + 1] = splits[i + 1].substring(0,2) + "\n"
-                    
-                    console.log(splits[i + 1])
+                    let last_name = splits[i+1].replaceAll(" ","")
+                    last_name = last_name.replaceAll("\n","")
+                    last_name = last_name.substring(0,1)+"\n"
+                    splits[i + 1] = last_name
                 }
 
                 // Remove the footer from the final split
@@ -538,7 +536,7 @@
             let i = 0
             for (let message of reformatted_messages){
                 const button = document.createElement("button");
-                button.class = "btn";
+                button.classList.add("btn");
                 button.textContent = "Copy msg " + String(i+1) 
                 
                 button.addEventListener('click', function(e) {
